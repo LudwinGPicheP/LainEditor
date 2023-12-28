@@ -15,7 +15,11 @@ import javax.swing.JOptionPane;
 public class ManipulacionFicheros {
 
     StringBuilder contenido = new StringBuilder();
-
+    /**
+     *Metodo que se encarga de abrir el archivo de texto y almacena el contenido
+     *en una variable StringBuider
+     * 
+     */
     public void abrirArchivo() {
         JFileChooser fc = new JFileChooser();
         int result = fc.showOpenDialog(null);
