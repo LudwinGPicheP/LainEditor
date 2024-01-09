@@ -46,6 +46,7 @@ public class ManipulacionFicheros {
         try{
             BufferedWriter escritura = new BufferedWriter(new FileWriter (ArchivoSeleccionado));
             escritura.write(niuContenido);
+            escritura.close();
         }catch(IOException e){
             JOptionPane.showMessageDialog(null, "ERROR: " + e, "Error en la Escritura de archivo", 1);
         }

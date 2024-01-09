@@ -1,11 +1,13 @@
 package LainEditor;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author luna
  */
 public class Ventana extends javax.swing.JFrame {
-    
+
     ManipulacionFicheros mf = new ManipulacionFicheros();
 
     /**
@@ -25,10 +27,10 @@ public class Ventana extends javax.swing.JFrame {
     private void initComponents() {
 
         jToolBar1 = new javax.swing.JToolBar();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btn_Nuevo = new javax.swing.JButton();
+        btn_Guardar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
+        btn_GuardarComo = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         tzta_editorcontenido = new javax.swing.JTextArea();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -44,29 +46,29 @@ public class Ventana extends javax.swing.JFrame {
 
         jToolBar1.setRollover(true);
 
-        jButton1.setText("Nuevo");
-        jButton1.setFocusable(false);
-        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar1.add(jButton1);
+        btn_Nuevo.setText("Nuevo");
+        btn_Nuevo.setFocusable(false);
+        btn_Nuevo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btn_Nuevo.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar1.add(btn_Nuevo);
 
-        jButton2.setText("Guardar");
-        jButton2.setFocusable(false);
-        jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btn_Guardar.setText("Guardar");
+        btn_Guardar.setFocusable(false);
+        btn_Guardar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btn_Guardar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btn_Guardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btn_GuardarActionPerformed(evt);
             }
         });
-        jToolBar1.add(jButton2);
+        jToolBar1.add(btn_Guardar);
         jToolBar1.add(jLabel1);
 
-        jButton3.setText("Guardar Como");
-        jButton3.setFocusable(false);
-        jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar1.add(jButton3);
+        btn_GuardarComo.setText("Guardar Como");
+        btn_GuardarComo.setFocusable(false);
+        btn_GuardarComo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btn_GuardarComo.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar1.add(btn_GuardarComo);
 
         tzta_editorcontenido.setColumns(20);
         tzta_editorcontenido.setRows(5);
@@ -131,9 +133,18 @@ public class Ventana extends javax.swing.JFrame {
         tzta_editorcontenido.setText(mf.getContenido());
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        mf.guardarArchivo(tzta_editorcontenido.getText());
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void btn_GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_GuardarActionPerformed
+        //JOptionPane.showMessageDialog(null, tzta_editorcontenido.getText());
+        if (mf.ArchivoSeleccionado != null) {
+            // Hay un archivo abierto, procede con guardar
+            
+            mf.guardarArchivo(tzta_editorcontenido.getText());
+            
+        } else {
+            // No hay archivo abierto, muestra un mensaje o abre un JFileChooser
+            JOptionPane.showMessageDialog(null, "No hay un archivo abierto. Abre un archivo antes de guardar.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_btn_GuardarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -171,9 +182,9 @@ public class Ventana extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton btn_Guardar;
+    private javax.swing.JButton btn_GuardarComo;
+    private javax.swing.JButton btn_Nuevo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
