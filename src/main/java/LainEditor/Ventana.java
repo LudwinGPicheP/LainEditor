@@ -27,7 +27,6 @@ public class Ventana extends javax.swing.JFrame {
     private void initComponents() {
 
         jToolBar1 = new javax.swing.JToolBar();
-        btn_Nuevo = new javax.swing.JButton();
         btn_Guardar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         btn_GuardarComo = new javax.swing.JButton();
@@ -35,22 +34,18 @@ public class Ventana extends javax.swing.JFrame {
         tzta_editorcontenido = new javax.swing.JTextArea();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
+        mn_NuevoArchivo = new javax.swing.JMenuItem();
+        mn_Abrir = new javax.swing.JMenuItem();
+        mn_Guardar = new javax.swing.JMenuItem();
+        mn_GuardarComo = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("LainEditor");
 
         jToolBar1.setRollover(true);
-
-        btn_Nuevo.setText("Nuevo");
-        btn_Nuevo.setFocusable(false);
-        btn_Nuevo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btn_Nuevo.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar1.add(btn_Nuevo);
 
         btn_Guardar.setText("Guardar");
         btn_Guardar.setFocusable(false);
@@ -68,6 +63,11 @@ public class Ventana extends javax.swing.JFrame {
         btn_GuardarComo.setFocusable(false);
         btn_GuardarComo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btn_GuardarComo.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btn_GuardarComo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_GuardarComoActionPerformed(evt);
+            }
+        });
         jToolBar1.add(btn_GuardarComo);
 
         tzta_editorcontenido.setColumns(20);
@@ -76,28 +76,56 @@ public class Ventana extends javax.swing.JFrame {
 
         jMenu1.setText("File");
 
-        jMenuItem1.setText("Abrir");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        mn_NuevoArchivo.setText("Nuevo Archivo");
+        mn_NuevoArchivo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                mn_NuevoArchivoActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem1);
+        jMenu1.add(mn_NuevoArchivo);
 
-        jMenuItem2.setText("Guardar");
-        jMenu1.add(jMenuItem2);
+        mn_Abrir.setText("Abrir");
+        mn_Abrir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mn_AbrirActionPerformed(evt);
+            }
+        });
+        jMenu1.add(mn_Abrir);
 
-        jMenuItem4.setText("Guardar Como");
-        jMenu1.add(jMenuItem4);
+        mn_Guardar.setText("Guardar");
+        mn_Guardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mn_GuardarActionPerformed(evt);
+            }
+        });
+        jMenu1.add(mn_Guardar);
+
+        mn_GuardarComo.setText("Guardar Como");
+        mn_GuardarComo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mn_GuardarComoActionPerformed(evt);
+            }
+        });
+        jMenu1.add(mn_GuardarComo);
 
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Ayuda");
 
         jMenuItem5.setText("Acerca De");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem5);
 
         jMenuItem6.setText("Documentacion");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem6);
 
         jMenuBar1.add(jMenu2);
@@ -108,43 +136,54 @@ public class Ventana extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 649, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 671, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 430, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 436, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        // TODO add your handling code here:
+    private void mn_AbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mn_AbrirActionPerformed
         mf.abrirArchivo();
+        setTitle("LainEditor ["+mf.ArchivoSeleccionado.getName()+"]");
         tzta_editorcontenido.setText(mf.getContenido());
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    }//GEN-LAST:event_mn_AbrirActionPerformed
 
     private void btn_GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_GuardarActionPerformed
-        //JOptionPane.showMessageDialog(null, tzta_editorcontenido.getText());
-        if (mf.ArchivoSeleccionado != null) {
-            // Hay un archivo abierto, procede con guardar
-            
-            mf.guardarArchivo(tzta_editorcontenido.getText());
-            
-        } else {
-            // No hay archivo abierto, muestra un mensaje o abre un JFileChooser
-            JOptionPane.showMessageDialog(null, "No hay un archivo abierto. Abre un archivo antes de guardar.", "Advertencia", JOptionPane.WARNING_MESSAGE);
-        }
+        mf.guardarArchivo(tzta_editorcontenido.getText());
     }//GEN-LAST:event_btn_GuardarActionPerformed
+
+    private void mn_NuevoArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mn_NuevoArchivoActionPerformed
+        mf.nuevoArchivo();
+        setTitle("LainEditor ["+mf.ArchivoSeleccionado.getName()+"]");
+    }//GEN-LAST:event_mn_NuevoArchivoActionPerformed
+
+    private void mn_GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mn_GuardarActionPerformed
+        mf.guardarArchivo(tzta_editorcontenido.getText());
+    }//GEN-LAST:event_mn_GuardarActionPerformed
+
+    private void mn_GuardarComoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mn_GuardarComoActionPerformed
+        mf.guardarComo(tzta_editorcontenido.getText());
+    }//GEN-LAST:event_mn_GuardarComoActionPerformed
+
+    private void btn_GuardarComoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_GuardarComoActionPerformed
+        mf.guardarComo(tzta_editorcontenido.getText());
+    }//GEN-LAST:event_btn_GuardarComoActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        JOptionPane.showMessageDialog(null, "Un proyecto creado por: \n Luna (Ludwing, Java Dev Junior) \n Gappy (Anderson, Java Dev Junior) \n como proyecto personal para nuestro portafolio", "Creadores", 1);
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        JOptionPane.showMessageDialog(null, "Puedes Ver la Documentacion aquí \n --> ", "Documentación", 1);
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -184,18 +223,18 @@ public class Ventana extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_Guardar;
     private javax.swing.JButton btn_GuardarComo;
-    private javax.swing.JButton btn_Nuevo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JToolBar jToolBar1;
+    private javax.swing.JMenuItem mn_Abrir;
+    private javax.swing.JMenuItem mn_Guardar;
+    private javax.swing.JMenuItem mn_GuardarComo;
+    private javax.swing.JMenuItem mn_NuevoArchivo;
     private javax.swing.JTextArea tzta_editorcontenido;
     // End of variables declaration//GEN-END:variables
 }
